@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/user_regi.css">
+  <title>Metal Place</title>
+</head>
+
+<body>
+  <!-- 登録画面 -->
+  <!-- ナビゲーションエリア -->
+  <header class="site-header">
+    <h1 class="site-logo">METAL PLACE</h1>
+        <ul class="nav__menu">
+          <li class="nav__menu__item"><a href="MP_material_register.html">材料登録</a></li>
+          <li class="nav__menu__item"><a href="MP_list.html">在庫リスト</a></li>
+          <li class="nav__menu__item"><a href="MP_rfq_list.html">見積リスト</a></li>
+          <li class="nav__menu__item"><a href="">設定</a></li>
+          <li class="nav__menu__item"><a href="MP_contact.html">お問い合わせ</a></li>
+        </ul>
+ </header>
+ <!-- 入力フォーム -->
+  <section class="regi_area">
+    <h1 class="title">お問い合わせ</h1> 
+    <ul class="regi_list">
+      <li class="select_list">会社名<input class="select_input"></li>
+      <li class="select_list">名前<input class="select_input"></li>
+      <li class="select_list">メールアドレス<input class="select_input"></li>
+      <li class="select_list">電話番号<input class="select_input"></li>
+      <li class="select_list">業種<input class="select_input"></li>
+      <li class="select_list">お問い合せ事項<textarea class="select_input textarea"></textarea></li>
+    </ul>
+  </section>
+  <section class="regi_button">
+    <button class="register_button">登録</button>
+  </section>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    import { getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved }
+        from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.15.0/firebase-database.js";
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "",
+      authDomain: "metal-trial.firebaseapp.com",
+      databaseURL: "https://metal-trial-default-rtdb.firebaseio.com",
+      projectId: "metal-trial",
+      storageBucket: "metal-trial.appspot.com",
+      messagingSenderId: "111277777807",
+      appId: "1:111277777807:web:c0cd1d622675d873e161fa"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);//Real Time DBに接続
+    const dbRef = ref(db,"contact");//Realtime DB
+
+  </script>
+</body>
+
+

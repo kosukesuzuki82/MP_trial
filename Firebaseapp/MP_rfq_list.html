@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/rfq_list.css">
+  <title>Metal Place</title>
+</head>
+
+<body>
+
+  <!-- Inquiryリスト -->
+  <main>
+    <!-- ナビゲーションエリア -->
+      <header class="site-header">
+        <h1 class="site-logo">METAL PLACE</h1>
+            <ul class="nav__menu">
+              <li class="nav__menu__item"><a href="MP_material_register.html">材料登録</a></li>
+              <li class="nav__menu__item"><a href="MP_list.html">在庫リスト</a></li>
+              <li class="nav__menu__item"><a href="MP_rfq_list.html">見積リスト</a></li>
+              <li class="nav__menu__item"><a href="">設定</a></li>
+              <li class="nav__menu__item"><a href="MP_contact.html">お問い合わせ</a></li>
+            </ul>
+     </header>
+    <h2 class="storage">見積リスト</h2>
+    <!-- サプライヤー/ユーザー切り替え -->
+    <section class="select_zone">
+      <div class="sup_user">
+       <button class="supplier">汎用材</button> 
+       <button class="user">端材</button>
+       <button class="user">特殊材</button>
+      </div>
+      <div>
+        <label><input class="serach_box" type="search" placeholder="検索"></label>
+      </div>
+    </section>
+     <!-- リスト掲示場所 -->
+    <section class="list_place">
+       <!-- ここに明細が代入される -->
+   </section>
+
+   <div class="page_nation">
+    <ul class="page">
+      <li class="pre nation">前へ</li>
+      <div class="pg_number">
+      <li class="nation">1</li>
+      </div>
+      <li class="next nation">次へ</li>
+    </ul>
+   </div>
+
+
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    import { getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved }
+        from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.15.0/firebase-database.js";
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "",
+      authDomain: "metal-trial.firebaseapp.com",
+      databaseURL: "https://metal-trial-default-rtdb.firebaseio.com",
+      projectId: "metal-trial",
+      storageBucket: "metal-trial.appspot.com",
+      messagingSenderId: "111277777807",
+      appId: "1:111277777807:web:c0cd1d622675d873e161fa"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);//Real Time DBに接続
+    const dbRef = ref(db,"material");//Realtime DB
+  
+  
+    //片方のボタンが押されたら、片方に色をつける
+    $(".supplier").on("click",function(){
+      $(this).toggleClass("active");
+    })
+    $(".end").on("click",function(){
+      $(this).toggleClass("active");
+    })
+    $(".special").on("click",function(){
+      $(this).toggleClass("active");
+    })
+  
+    //onChildaddedで追加された在庫を表示する
+    onChildAdded(dbRef,function(data){
+     //オブジェクトを所得
+     const msg = data.val();
+    //オブジェクトのkey値を取得
+    const key = data.key;
+    //オブジェクトの要素数を取得
+    const leng = Object.keys(msg).length;
+    //特定のkey値を取得（在庫）
+    const inq = (msg["inq_sto"]);
+    //特定のkey値を取得（品種）
+    const item = (msg["item"]);
+    //特定のkey値を取得（鋼種）
+    const kind = (msg["kind"]);
+    //特定のkey値を取得（縦長さ）
+    const len = (msg["len"]);
+    //特定のkey値を取得（幅）
+    const wid = (msg["width"]);
+    //特定のkey値を取得（厚さ）
+    const thick = (msg["thick"]);
+    //特定のkey値を取得（厚さ）
+    const quantity = (msg["quantity"]);
+    //特定のkey値を取得（厚さ）
+    const place = (msg["place"]);
+    //特定のkey値を取得（厚さ）
+    const price = (msg["price"]);
+    const inq_price = price * quantity;//運賃の計算も入れる
+      //処理を記載
+      //在庫明細であった場合(if)在庫リストへの追加を実行する
+      if(inq=="inquiry"){
+        $(".list_place").append(`<div class="material_info">
+            <div class="detail_mate">
+            <li class="detail">品種<p class="detail_name item">${item}</p></li>
+            <li class="detail">鋼種<p class="detail_name kind">${kind}</p></li>
+            <li class="detail">サイズ<p class="detail_name size">t${thick}×${wid}×${len}</p></li>
+            <li class="detail">場所<p class="detail_name place">${place}</p></li>
+            <li class="detail">単価<p class="detail_name price">${price}</p></li>
+            <img src="">
+          </div>
+            
+            <form class="form_regi" name="login_form"hidden >
+          <div class="login_form_top">
+              <h1>詳細</h1>
+            <div class="listpop_btn">
+              <button class="purchase">購入</button>
+              <button class="close">閉じる</button>
+                        </div>
+                        <div class="list_detail">
+                          <li class="select_list select_input item"><p>品種</p><p>${item}</p></li>
+                          <li class="select_list select_input kind"><p>鋼種</p><p>${kind}</p></li>
+                          <li class="select_list select_input quantity"><p>数量</p><p>${quantity}</p></li>
+                          <li class="select_list select_input size"><p>サイズ</p><p>t${thick}×${wid}×${len}</p></li>
+                          <li class="select_list select_input place"><p>場所</p><p>${place}</p></li>
+                          <li class="select_list select_input price"><p>単価</p><p>${price}</p></li>
+                        </div>
+                        <div<id="maps"></div>
+            <div class="inq_price"> 
+            <p>見積価格</p>
+            <p>¥${inq_price}</p>
+            </div>
+          </dix>
+        </form>`)
+      }
+    })
+
+  //各明細をボタンクリックして詳細を表情する→
+  $(document).on("click",'.material_info',function(){
+    $(".form_regi").slideDown();
+  })
+    </script>
+  
+
+  
+</body>

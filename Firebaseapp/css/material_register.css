@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* レスポンシブルデザインは下記内に記載する */
+@media screen and(max-width:480px) {
+}
+body{
+    background-size:cover ;
+    background-position: center;
+    background-color: #808080;
+    width: 100%;
+    height: 100vh;
+    margin-top: 30px;
+  }
+/* ヘッダー操作 */
+h1{
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+h2{
+  font-size: 25px;
+}
+.site-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 0 15px;
+}
+.nav__menu{
+    list-style: none;
+    display: flex;
+}
+.nav__menu__item{
+    margin:auto 0 auto 20px;
+}
+.nav__menu__item a{
+    color: #333;
+    text-decoration: none;
+}
+/* サプライヤーユーザー切り替え */
+.mate_regi{
+  width: 40%;
+  text-align: center;
+  margin: 20px auto 20px auto;
+}
+.sup_user{
+  width: 70%;
+  justify-content: space-between;
+  padding: 0 30px 5px 40px;
+  margin-bottom: 20px;
+}
+.supplier{
+  width: 20%;
+}
+.style{
+  width:20%;
+}
+.kindof{
+  width:20%;
+}
+
+/* 登録エリア操作 */
+.register{
+  display: flex;
+  padding-left: 40px;
+}
+.register_material{
+  width: 30%;
+}
+.select_list{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-right: 0;
+  width: 100%;
+}
+.file_upload{
+  display: none;
+}
+.select_input{
+  width: 70%;
+}
+.quantity,.len,.width,.thick,.price{
+  width: 100%;
+}
+.quantity_select,.len_select,.width_select,.thick_select,.price_select{
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  padding-right: 0;
+  margin-right: 0;
+}
+select{
+  width: 28%;
+  text-align: center;
+}
+
+
+.input_type{
+  background-color:#fff;
+  width: 70%;
+  border-style: solid;
+  border-width: 2px;
+  padding: 2px;
+  font-size: 12px;
+  text-align: center;
+}
+/* 画像/サイズAI結果投影エリア */
+.imgs_area{
+  width: 25%;
+  height: 70%;
+  margin: 0 10% 0 10%;
+  border-style: dotted;
+  border-color: #000;
+  border-width: 2px;
+  text-align: center;
+  height: auto;
+}
+.imgs{
+  margin: 30px 30px 30px 30px;
+  text-align: center;
+}
+img{
+  width: 80%;
+  text-align: center;
+
+}
+.ai_result{
+  list-style: none;
+  padding: 30% 0 30% 0;
+}
+/* 登録ボタン */
+.regi_button{
+  margin-top: 50px;
+  margin-bottom: 30px;
+  width: 100%;
+  text-align: center;
+}
+.register_button{
+  width: 30%;
+}
+
+/* クリックでボタンの色を変える */
+.active{
+  background-color: gray;
+}
+
+/* 登録後のポップアップ */
+form {
+  width: 400px;
+  padding: 40px 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #000;
+  text-align: center;
+  border-radius: 5px;
+}
+form h1,form p {
+  color: white;
+  font-weight: 500;
+}

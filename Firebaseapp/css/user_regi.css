@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* レスポンシブルデザインは下記内に記載する */
+@media screen and(max-width:480px) {
+}
+body{
+    background-size:cover ;
+    background-position: center;
+    background-color: #808080;
+    width: 100%;
+    height: 100vh;
+    margin-top: 30px;
+  }
+/* ヘッダー操作 */
+h1{
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+h2{
+  font-size: 25px;
+}
+.site-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 0 15px;
+}
+.nav__menu{
+    list-style: none;
+    display: flex;
+}
+.nav__menu__item{
+    margin:auto 0 auto 20px;
+}
+.nav__menu__item a{
+    color: #333;
+    text-decoration: none;
+}
+
+/* タイトル */
+.title{
+  text-align: center;
+  margin: 20px auto 20px auto;
+}
+
+/* 登録エリア */
+.regi_area{
+  width: 50%;
+  margin: auto;
+}
+.select_list{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.select_input{
+  width: 50%;
+}
+/* 登録ボタン */
+.regi_button{
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
+}
+.register_button{
+  width: 30%;
+}
+
+/* 登録後のポップアップ */
+form {
+  width: 400px;
+  padding: 40px 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #000;
+  text-align: center;
+  border-radius: 5px;
+}
+
+form h1,form p {
+  color: white;
+  font-weight: 500;
+}
